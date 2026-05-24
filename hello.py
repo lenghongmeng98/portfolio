@@ -1,3 +1,3 @@
 # Greeting script
 
-print("Hello")
+print("Hello, World!")
