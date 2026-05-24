@@ -1,1 +1,3 @@
+# Greeting script
+
 print("Hello")
