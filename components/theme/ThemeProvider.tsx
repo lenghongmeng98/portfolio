@@ -15,13 +15,13 @@ function apply(t: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const stored = localStorage.getItem("theme");
-    const initial: Theme = stored === "dark" || stored === "light" ? stored : "dark";
+    const initial: Theme = stored === "dark" || stored === "light" ? stored : "light";
     setThemeState(initial);
     apply(initial);
   }, []);
@@ -39,7 +39,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const value = useMemo(() => ({ theme: mounted ? theme : "dark", setTheme, toggle }), [mounted, theme, setTheme, toggle]);
+  const value = useMemo(() => ({ theme: mounted ? theme : "light", setTheme, toggle }), [mounted, theme, setTheme, toggle]);
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

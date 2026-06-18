@@ -70,7 +70,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full scroll-smooth dark`}
+      className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
     >
       <body className="bg-app min-h-full font-sans antialiased text-[var(--text)]">
         <JsonLd />
