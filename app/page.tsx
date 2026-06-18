@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/SiteFooter";
+﻿import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -13,10 +13,10 @@ export default function Home() {
       <SiteHeader />
       <main className="flex-1">
         <HeroSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <AboutSection />
         <SkillsSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <AboutSection />
         <ContactSection />
       </main>
       <SiteFooter />
