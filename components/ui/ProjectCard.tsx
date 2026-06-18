@@ -16,7 +16,7 @@ type Project = {
 
 type Props = { project: Project; index: number };
 
-const MAX_TAGS = 4;
+const MAX_TAGS = 5;
 
 export function ProjectCard({ project, index }: Props) {
   const reduce = useReducedMotion();
@@ -37,65 +37,67 @@ export function ProjectCard({ project, index }: Props) {
       <article
         ref={artRef}
         onMouseMove={handleMouseMove}
-        className="gradient-border-card relative flex h-full flex-col overflow-hidden p-6 md:p-8"
+        className="gradient-border-card relative overflow-hidden p-6 md:p-8"
       >
-        {/* Mouse spotlight */}
+        {/* Card spotlight */}
         {!reduce && (
           <div
             className="card-spotlight"
             style={{
-              background: `radial-gradient(220px circle at ${spot.x}px ${spot.y}px, rgba(37,99,235,0.07), transparent 68%)`,
+              background: `radial-gradient(240px circle at ${spot.x}px ${spot.y}px, rgba(37,99,235,0.07), transparent 70%)`,
             }}
             aria-hidden
           />
         )}
 
-        {/* Index + tech count */}
-        <div className="relative flex items-center justify-between">
+        {/* Top row: index + links */}
+        <div className="relative flex items-center justify-between gap-4">
           <span className="project-index">{num}</span>
-          <span className="text-mono-label">{project.stack.length} technologies</span>
+          <div className="flex items-center gap-4">
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring link flex items-center gap-1 text-xs font-medium"
+            >
+              Live demo
+              <UIIcon name="externalLink" className="h-3 w-3" />
+            </a>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring flex items-center gap-1 text-xs text-[var(--text-secondary)] transition-colors hover:text-[var(--text)]"
+            >
+              <UIIcon name="github" className="h-3.5 w-3.5" />
+              Source
+            </a>
+            <span
+              className="ml-1 flex items-center gap-0.5 text-xs text-[var(--text-tertiary)] opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+              aria-hidden
+            >
+              View <UIIcon name="arrowRight" className="h-3 w-3 text-[var(--accent)]" />
+            </span>
+          </div>
         </div>
 
         {/* Title */}
-        <h3 className={`relative mt-3 ${textCardTitle}`}>{project.title}</h3>
+        <h3 className={`relative mt-4 ${textCardTitle} text-lg`}>{project.title}</h3>
 
         {/* Description */}
-        <p className={`relative mt-3 flex-1 ${textBody}`}>{project.description}</p>
+        <p className={`relative mt-2 ${textBody}`}>{project.description}</p>
+
+        {/* Divider */}
+        <hr className="section-divider relative mt-5" />
 
         {/* Stack */}
-        <div className="relative mt-5 flex flex-wrap gap-2">
+        <div className="relative mt-4 flex flex-wrap gap-2">
           {visibleStack.map((s) => (
             <span key={s} className="tag">{s}</span>
           ))}
           {extraCount > 0 && (
             <span className="tag">+{extraCount} more</span>
           )}
-        </div>
-
-        {/* Links */}
-        <div className="relative mt-6 flex items-center gap-5 border-t border-[var(--border)] pt-5">
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring link flex items-center gap-1.5 text-sm font-medium"
-          >
-            Live demo
-            <UIIcon name="externalLink" className="h-3.5 w-3.5" />
-          </a>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring flex items-center gap-1.5 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text)]"
-          >
-            <UIIcon name="github" className="h-3.5 w-3.5" />
-            Source
-          </a>
-          <span className="ml-auto flex items-center gap-1 text-sm text-[var(--text-tertiary)] opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
-            View
-            <UIIcon name="arrowRight" className="h-3.5 w-3.5 text-[var(--accent)]" />
-          </span>
         </div>
       </article>
     </motion.li>

@@ -14,10 +14,12 @@ export function SectionHeading({ title, description }: Props) {
   const reduce = useReducedMotion();
 
   return (
-    <motion.header {...fadeUp(reduce)} className="mb-10 md:mb-12">
+    <motion.header {...fadeUp(reduce)} className="mb-10 text-center md:mb-12">
       <h2 className={textSectionTitle}>{title}</h2>
-      <motion.div className="section-rule" aria-hidden />
-      {description ? <p className="mt-5 max-w-xl text-[var(--text-secondary)]">{description}</p> : null}
+      <div className="mx-auto mt-4 h-0.5 w-10 rounded-full" style={{ background: "var(--gradient-accent)" }} aria-hidden />
+      {description ? (
+        <p className="mx-auto mt-5 max-w-lg text-[var(--text-secondary)]">{description}</p>
+      ) : null}
     </motion.header>
   );
 }

@@ -42,13 +42,13 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="section relative overflow-hidden border-b border-[var(--border)] pt-8 md:pt-14"
+      className="section relative overflow-hidden border-b border-[var(--border)] py-20 md:py-28"
       style={{ "--sx": `${spotlight.x}%`, "--sy": `${spotlight.y}%` } as React.CSSProperties}
     >
-      {/* Mouse spotlight */}
+      {/* Spotlight */}
       <div className="hero-spotlight" aria-hidden />
 
-      {/* Floating gradient blobs */}
+      {/* Floating blobs */}
       {!reduce && (
         <>
           <div className="hero-blob hero-blob-1" aria-hidden />
@@ -57,123 +57,138 @@ export function HeroSection() {
         </>
       )}
 
-      <Container className="layout-shell relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-
-          {/* Left: Content stagger */}
-          <motion.div
-            variants={staggerContainer(reduce, 0.09)}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={staggerItem(reduce)}>
-              <span className="status-pill">
-                <span className="status-dot" aria-hidden />
-                {site.availability}
-              </span>
-            </motion.div>
-
-            <motion.h1 variants={staggerItem(reduce)} className={`mt-6 ${textHero}`}>
-              {firstName}
-              <br />
-              <span className="gradient-text-animate">{lastName}</span>
-            </motion.h1>
-
-            <motion.p variants={staggerItem(reduce)} className="mt-3 text-lg font-medium tracking-tight text-[var(--text-secondary)]">
-              {site.role}
-            </motion.p>
-
-            <motion.div variants={staggerItem(reduce)} className="mt-4 flex flex-wrap gap-2">
-              {TECH_TAGS.map((tag) => (
-                <span key={tag} className="tag">{tag}</span>
-              ))}
-            </motion.div>
-
-            <motion.p variants={staggerItem(reduce)} className={`mt-5 ${textLead}`}>
-              {site.summary}
-            </motion.p>
-
-            <motion.p variants={staggerItem(reduce)} className="mt-4 flex items-center gap-2 text-sm text-[var(--text-tertiary)]">
-              <UIIcon name="location" className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-              {site.location}
-            </motion.p>
-
-            <motion.div variants={staggerItem(reduce)} className="mt-8 flex flex-wrap gap-3">
-              <a href={site.resume.href} download className="btn-primary focus-ring">
-                <UIIcon name="arrowRight" className="h-4 w-4" />
-                {site.resume.label}
-              </a>
-              <a href="#contact" className="btn-secondary focus-ring">
-                Get in touch
-              </a>
-            </motion.div>
-
-            <motion.div variants={staggerItem(reduce)} className="mt-5 flex flex-wrap gap-1">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  className="btn-ghost focus-ring"
-                >
-                  <UIIcon name={socialIconFor(link.label)} className="h-4 w-4" />
-                  <span className="text-sm">{link.label}</span>
-                </a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right: Photo + Stats */}
-          <motion.div
-            initial={reduce ? {} : { opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT }}
-            className="mx-auto w-full max-w-[20rem] lg:max-w-none"
-          >
-            <div className="photo-wrap">
-              <div className="hero-glow" aria-hidden />
-              <motion.div
-                className="photo-frame"
-                whileHover={reduce ? undefined : { y: -6, scale: 1.015 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                <div className="photo-frame-inner relative aspect-[4/5]">
+      <Container className="layout-narrow relative z-10">
+        <motion.div
+          variants={staggerContainer(reduce, 0.08)}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center text-center"
+        >
+          {/* Avatar */}
+          <motion.div variants={staggerItem(reduce)}>
+            <motion.div
+              className="hero-avatar"
+              whileHover={reduce ? undefined : { scale: 1.04 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="hero-avatar-glow" aria-hidden />
+              <div className="hero-avatar-frame">
+                <div className="hero-avatar-inner">
                   <Image
                     src={site.photo}
                     alt={site.photoAlt}
                     fill
                     className="object-cover object-[center_18%]"
-                    sizes="(max-width: 1024px) 80vw, 400px"
+                    sizes="160px"
                     priority
                   />
                 </div>
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={reduce ? {} : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.62, ease: EASE_OUT }}
-              className="mt-4 flex gap-2"
-            >
-              {STATS.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={reduce ? {} : { opacity: 0, scale: 0.82 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.68 + i * 0.07, ease: EASE_OUT }}
-                  className="glass-card hero-stat"
-                >
-                  <p className="text-mono-label">{s.label}</p>
-                  <p className="mt-1 text-base font-bold text-[var(--text)]">{s.value}</p>
-                </motion.div>
-              ))}
+              </div>
             </motion.div>
           </motion.div>
 
-        </div>
+          {/* Availability badge */}
+          <motion.div variants={staggerItem(reduce)} className="mt-5">
+            <span className="status-pill">
+              <span className="status-dot" aria-hidden />
+              {site.availability}
+            </span>
+          </motion.div>
+
+          {/* Name */}
+          <motion.h1 variants={staggerItem(reduce)} className={`mt-4 ${textHero}`}>
+            {firstName}{" "}
+            <span className="gradient-text-animate">{lastName}</span>
+          </motion.h1>
+
+          {/* Role */}
+          <motion.p
+            variants={staggerItem(reduce)}
+            className="mt-3 text-lg font-medium tracking-tight text-[var(--text-secondary)]"
+          >
+            {site.role}
+          </motion.p>
+
+          {/* Tech tags */}
+          <motion.div
+            variants={staggerItem(reduce)}
+            className="mt-4 flex flex-wrap justify-center gap-2"
+          >
+            {TECH_TAGS.map((tag) => (
+              <span key={tag} className="tag">{tag}</span>
+            ))}
+          </motion.div>
+
+          {/* Summary */}
+          <motion.p
+            variants={staggerItem(reduce)}
+            className={`mt-6 max-w-xl ${textLead} text-center`}
+          >
+            {site.summary}
+          </motion.p>
+
+          {/* Location */}
+          <motion.p
+            variants={staggerItem(reduce)}
+            className="mt-3 flex items-center gap-1.5 text-sm text-[var(--text-tertiary)]"
+          >
+            <UIIcon name="location" className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+            {site.location}
+          </motion.p>
+
+          {/* CTA buttons */}
+          <motion.div
+            variants={staggerItem(reduce)}
+            className="mt-8 flex flex-wrap justify-center gap-3"
+          >
+            <a href={site.resume.href} download className="btn-primary focus-ring">
+              <UIIcon name="arrowRight" className="h-4 w-4" />
+              {site.resume.label}
+            </a>
+            <a href="#contact" className="btn-secondary focus-ring">
+              Get in touch
+            </a>
+          </motion.div>
+
+          {/* Social links */}
+          <motion.div
+            variants={staggerItem(reduce)}
+            className="mt-4 flex flex-wrap justify-center gap-1"
+          >
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                className="btn-ghost focus-ring"
+              >
+                <UIIcon name={socialIconFor(link.label)} className="h-4 w-4" />
+                <span className="text-sm">{link.label}</span>
+              </a>
+            ))}
+          </motion.div>
+
+          {/* Stats row */}
+          <motion.div
+            variants={staggerItem(reduce)}
+            className="mt-10 flex w-full max-w-sm justify-center gap-3"
+          >
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={reduce ? {} : { opacity: 0, scale: 0.82 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.38, delay: 0.7 + i * 0.07, ease: EASE_OUT }}
+                className="glass-card hero-stat flex-1"
+              >
+                <p className="text-mono-label">{s.label}</p>
+                <p className="mt-1 text-base font-bold text-[var(--text)]">{s.value}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

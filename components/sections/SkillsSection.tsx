@@ -24,34 +24,36 @@ export function SkillsSection() {
       title="Skills & Stack"
       description="Technologies I use to design, build, and ship production-ready systems."
     >
-      {/* Tab strip */}
-      <div className="tab-list" role="tablist" aria-label="Skill categories">
-        {skillGroups.map((group) => (
-          <button
-            key={group.label}
-            role="tab"
-            aria-selected={activeTab === group.label}
-            onClick={() => setActiveTab(group.label)}
-            className="tab-btn focus-ring"
-          >
-            {group.label}
-            {group.label === "AI-Assisted Dev" && (
-              <span className="badge-new ml-1.5">New</span>
-            )}
-          </button>
-        ))}
+      {/* Centered scrollable tab strip */}
+      <div className="flex justify-center">
+        <div className="tab-list w-full max-w-lg" role="tablist" aria-label="Skill categories">
+          {skillGroups.map((group) => (
+            <button
+              key={group.label}
+              role="tab"
+              aria-selected={activeTab === group.label}
+              onClick={() => setActiveTab(group.label)}
+              className="tab-btn focus-ring flex-1"
+            >
+              {group.label}
+              {group.label === "AI-Assisted Dev" && (
+                <span className="badge-new ml-1.5">New</span>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Grid with AnimatePresence */}
+      {/* Skill grid */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
           role="tabpanel"
-          variants={staggerContainer(reduce, 0.025)}
+          variants={staggerContainer(reduce, 0.022)}
           initial="hidden"
           animate="visible"
           exit={reduce ? {} : { opacity: 0, y: -6, transition: { duration: 0.12 } }}
-          className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
+          className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5"
         >
           {activeGroup.skills.map((skill) => (
             <motion.div
@@ -81,7 +83,7 @@ export function SkillsSection() {
         </motion.div>
       </AnimatePresence>
 
-      <p className="mt-5 text-xs text-[var(--text-tertiary)]">
+      <p className="mt-5 text-center text-xs text-[var(--text-tertiary)]">
         {activeGroup.skills.length} technologies in {activeGroup.label}
       </p>
     </SectionShell>

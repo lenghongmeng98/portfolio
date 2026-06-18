@@ -14,7 +14,7 @@ export function ContactSection() {
       <motion.div {...fadeUp(reduce)} className="mx-auto max-w-2xl">
         <div className="gradient-border-card relative overflow-hidden p-8 text-center md:p-12">
 
-          {/* Decorative gradient backdrop */}
+          {/* Decorative radial */}
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
