@@ -229,3 +229,134 @@ html.dark .panel::before {
   .panel-interactive:hover, .btn-primary:hover, .btn-secondary:hover, .skill-tile:hover { transform: none; }
   .status-dot { animation: none; }
 }
+
+/* PREMIUM UI REDESIGN 2026 */
+
+/* Animated gradient text */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+.gradient-text-animate {
+  background: linear-gradient(135deg, #2563EB, #7C3AED, #06B6D4, #2563EB);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Floating blob animations */
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(24px, -18px) scale(1.04); }
+  66%  { transform: translate(-16px, 12px) scale(0.96); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-22px, 20px) scale(1.06); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%  { transform: translate(18px, -12px) scale(0.94); }
+  80%  { transform: translate(-12px, 16px) scale(1.03); }
+}
+
+/* Hero blobs */
+.hero-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(72px); pointer-events: none; z-index: 0;
+}
+.hero-blob-1 {
+  width: 480px; height: 480px;
+  background: rgba(37, 99, 235, 0.11);
+  top: -120px; left: -120px;
+  animation: float-a 14s ease-in-out infinite;
+}
+.hero-blob-2 {
+  width: 380px; height: 380px;
+  background: rgba(124, 58, 237, 0.09);
+  top: 30px; right: -80px;
+  animation: float-b 17s ease-in-out infinite;
+}
+.hero-blob-3 {
+  width: 340px; height: 340px;
+  background: rgba(6, 182, 212, 0.07);
+  bottom: -60px; left: 38%;
+  animation: float-c 20s ease-in-out infinite;
+}
+
+/* Hero mouse spotlight */
+.hero-spotlight {
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    600px circle at var(--sx, 50%) var(--sy, 30%),
+    rgba(37, 99, 235, 0.05),
+    transparent 42%
+  );
+  pointer-events: none; z-index: 0;
+}
+
+/* Gradient border card */
+.gradient-border-card {
+  background:
+    linear-gradient(var(--bg-elevated), var(--bg-elevated)) padding-box,
+    linear-gradient(135deg, rgba(37,99,235,0.22), rgba(124,58,237,0.18), rgba(6,182,212,0.12)) border-box;
+  border: 1px solid transparent;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+.gradient-border-card:hover {
+  background:
+    linear-gradient(var(--bg-elevated), var(--bg-elevated)) padding-box,
+    linear-gradient(135deg, rgba(37,99,235,0.45), rgba(124,58,237,0.38), rgba(6,182,212,0.25)) border-box;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+html.dark .glass-card {
+  background: rgba(17, 24, 39, 0.65);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Experience card gradient left accent */
+.exp-card { position: relative; overflow: hidden; }
+.exp-card::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--gradient-accent);
+  border-radius: 0 9999px 9999px 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.exp-card:hover::before { opacity: 1; }
+
+/* Current role animated dot */
+.timeline-dot-current {
+  width: 0.75rem; height: 0.75rem;
+  left: -0.44rem;
+  box-shadow: 0 0 0 4px var(--bg), 0 0 18px var(--accent-glow), 0 0 0 8px rgba(37,99,235,0.07);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Card spotlight overlay */
+.card-spotlight {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none; z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text-animate { animation: none; }
+  .hero-blob-1, .hero-blob-2, .hero-blob-3 { animation: none; }
+}

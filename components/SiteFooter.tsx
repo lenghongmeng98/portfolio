@@ -12,7 +12,12 @@ export function SiteFooter() {
     <footer className="border-t border-[var(--border)] bg-[var(--bg-subtle)] py-10">
       <div className="layout-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-display text-lg font-bold tracking-tight text-[var(--text)]">{site.name}</p>
+          <button type="button" onClick={() => go("home")} className="focus-ring group flex items-center gap-0.5">
+            <span className="font-display text-lg font-bold tracking-tight">
+              <span className="gradient-text">{site.name.split(" ")[0]}</span>
+              <span className="text-[var(--accent)] transition-colors group-hover:text-[var(--accent-2)]">.</span>
+            </span>
+          </button>
           <p className="mt-1 text-sm text-[var(--text-tertiary)]">{site.role}</p>
         </div>
 
@@ -23,7 +28,7 @@ export function SiteFooter() {
               href={link.href}
               target={link.href.startsWith("mailto:") ? undefined : "_blank"}
               rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="focus-ring btn-ghost rounded-full border border-[var(--border)] !px-3"
+              className="focus-ring btn-ghost rounded-full border border-[var(--border)] !px-3 transition-[border-color,color] hover:border-[var(--border-strong)]"
             >
               <UIIcon name={socialIconFor(link.label)} className="h-4 w-4" />
               {link.label}
@@ -37,7 +42,7 @@ export function SiteFooter() {
           © {new Date().getFullYear()} {site.name}
         </p>
         <div className="flex items-center gap-4">
-          <a href={`mailto:${contact.email}`} className="focus-ring text-xs text-[var(--text-secondary)] hover:text-[var(--accent)]">
+          <a href={`mailto:${contact.email}`} className="focus-ring text-xs text-[var(--text-secondary)] transition-colors hover:text-[var(--accent)]">
             {contact.email}
           </a>
           <button type="button" onClick={() => go("home")} className="focus-ring btn-ghost !px-2 !text-xs">

@@ -13,15 +13,26 @@ export function ExperienceSection() {
     <SectionShell id="experience" title="Experience" alt>
       <div className="relative">
         <div className="timeline-rail" aria-hidden />
-        <ol className="space-y-8">
+        <ol className="space-y-6">
           {experience.map((job, i) => (
             <motion.li
               key={job.company + job.period}
-              {...fadeUp(reduce, i * 0.06)}
+              {...fadeUp(reduce, i * 0.07)}
               className="timeline timeline-item"
             >
-              <span className="timeline-dot" aria-hidden />
-              <div className="panel panel-interactive p-6 md:p-7">
+              {/* Current role gets a pulsing dot */}
+              <span className={`timeline-dot${i === 0 ? " timeline-dot-current" : ""}`} aria-hidden />
+
+              <div className={`panel panel-interactive exp-card p-6 md:p-7${i === 0 ? " panel-accent" : ""}`}>
+
+                {/* Current badge */}
+                {i === 0 && (
+                  <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-muted)] px-2.5 py-1 text-xs font-semibold text-[var(--accent)]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" aria-hidden />
+                    Current
+                  </span>
+                )}
+
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
                     <h3 className={textCardTitle}>{job.title}</h3>
@@ -29,22 +40,27 @@ export function ExperienceSection() {
                       {job.company} · {job.location}
                     </p>
                   </div>
-                  <p className="font-mono text-sm text-[var(--text-tertiary)]">{job.period}</p>
+                  <p className="shrink-0 font-mono text-sm text-[var(--text-tertiary)]">{job.period}</p>
                 </div>
+
                 <p className={`mt-4 max-w-2xl ${textBody}`}>{job.summary}</p>
+
                 <ul className="mt-4 space-y-2.5">
                   {job.highlights.map((item) => (
                     <li key={item} className="flex gap-2.5 text-sm text-[var(--text-secondary)] sm:text-base">
-                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[var(--accent)]" aria-hidden />
+                      <span
+                        className="mt-[0.4rem] h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ background: "var(--gradient-accent)" }}
+                        aria-hidden
+                      />
                       {item}
                     </li>
                   ))}
                 </ul>
+
                 <div className="mt-5 flex flex-wrap gap-2">
                   {job.tech.map((t) => (
-                    <span key={t} className="tag">
-                      {t}
-                    </span>
+                    <span key={t} className="tag">{t}</span>
                   ))}
                 </div>
               </div>

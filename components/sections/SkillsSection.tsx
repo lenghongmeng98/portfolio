@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { skillGroups } from "@/data/site";
 import { SectionShell } from "@/components/ui/SectionShell";
+import { staggerContainer, staggerItem } from "@/lib/motion";
 
 function getMonogram(name: string): string {
   const words = name.split(/[\s\-()/]+/).filter(Boolean);
@@ -13,7 +14,7 @@ function getMonogram(name: string): string {
 
 export function SkillsSection() {
   const reduce = useReducedMotion();
-  const [activeTab, setActiveTab] = useState(skillGroups[0].label);
+  const [activeTab, setActiveTab] = useState<string>(skillGroups[0].label);
   const activeGroup = skillGroups.find((g) => g.label === activeTab) ?? skillGroups[0];
   const isAI = activeGroup.label === "AI-Assisted Dev";
 
@@ -23,6 +24,7 @@ export function SkillsSection() {
       title="Skills & Stack"
       description="Technologies I use to design, build, and ship production-ready systems."
     >
+      {/* Tab strip */}
       <div className="tab-list" role="tablist" aria-label="Skill categories">
         {skillGroups.map((group) => (
           <button
@@ -40,22 +42,23 @@ export function SkillsSection() {
         ))}
       </div>
 
+      {/* Grid with AnimatePresence */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
           role="tabpanel"
-          initial={reduce ? {} : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduce ? {} : { opacity: 0, y: -6 }}
-          transition={{ duration: 0.18, ease: "easeOut" }}
+          variants={staggerContainer(reduce, 0.025)}
+          initial="hidden"
+          animate="visible"
+          exit={reduce ? {} : { opacity: 0, y: -6, transition: { duration: 0.12 } }}
           className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
         >
-          {activeGroup.skills.map((skill, i) => (
+          {activeGroup.skills.map((skill) => (
             <motion.div
               key={skill}
-              initial={reduce ? {} : { opacity: 0, scale: 0.88 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2, delay: reduce ? 0 : i * 0.028, ease: "easeOut" }}
+              variants={staggerItem(reduce)}
+              whileHover={reduce ? undefined : { y: -3, scale: 1.04 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
               className={`skill-tile${isAI ? " skill-tile-ai" : ""}`}
               title={skill}
             >
