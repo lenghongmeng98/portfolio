@@ -6,9 +6,9 @@ import { SectionShell } from "@/components/ui/SectionShell";
 
 export function ProjectsSection() {
   return (
-    <SectionShell id="projects" title="Selected work">
+    <SectionShell id="projects" title="Selected Work" overline="Projects" alt>
       <div className="mx-auto max-w-2xl">
-        <ul className="grid list-none gap-5">
+        <ul className="grid list-none gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}

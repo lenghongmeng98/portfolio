@@ -22,11 +22,16 @@ export function SkillsSection() {
     <SectionShell
       id="skills"
       title="Skills & Stack"
+      overline="Technical Skills"
       description="Technologies I use to design, build, and ship production-ready systems."
     >
-      {/* Centered scrollable tab strip */}
+      {/* Tab strip */}
       <div className="flex justify-center">
-        <div className="tab-list w-full max-w-lg" role="tablist" aria-label="Skill categories">
+        <div
+          className="tab-list w-full max-w-md"
+          role="tablist"
+          aria-label="Skill categories"
+        >
           {skillGroups.map((group) => (
             <button
               key={group.label}
@@ -35,7 +40,7 @@ export function SkillsSection() {
               onClick={() => setActiveTab(group.label)}
               className="tab-btn focus-ring flex-1"
             >
-              {group.label}
+              {group.label === "AI-Assisted Dev" ? "AI Dev" : group.label}
               {group.label === "AI-Assisted Dev" && (
                 <span className="badge-new ml-1.5">New</span>
               )}
@@ -53,13 +58,13 @@ export function SkillsSection() {
           initial="hidden"
           animate="visible"
           exit={reduce ? {} : { opacity: 0, y: -6, transition: { duration: 0.12 } }}
-          className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5"
+          className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
         >
           {activeGroup.skills.map((skill) => (
             <motion.div
               key={skill}
               variants={staggerItem(reduce)}
-              whileHover={reduce ? undefined : { y: -3, scale: 1.04 }}
+              whileHover={reduce ? undefined : { y: -4, scale: 1.05 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
               className={`skill-tile${isAI ? " skill-tile-ai" : ""}`}
               title={skill}
@@ -69,7 +74,7 @@ export function SkillsSection() {
                 style={{
                   background: isAI ? "var(--accent-2-muted)" : "var(--accent-muted)",
                   color: isAI ? "var(--accent-2)" : "var(--accent)",
-                  fontFamily: "var(--font-mono), ui-monospace, monospace",
+                  fontFamily: "var(--font-mono), monospace",
                 }}
                 aria-hidden
               >
@@ -84,7 +89,7 @@ export function SkillsSection() {
       </AnimatePresence>
 
       <p className="mt-5 text-center text-xs text-[var(--text-tertiary)]">
-        {activeGroup.skills.length} technologies in {activeGroup.label}
+        {activeGroup.skills.length} technologies · {activeGroup.label}
       </p>
     </SectionShell>
   );

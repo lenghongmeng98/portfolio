@@ -9,7 +9,7 @@ export function AboutSection() {
   const reduce = useReducedMotion();
 
   return (
-    <SectionShell id="about" title="About">
+    <SectionShell id="about" title="About Me" overline="Background">
       <motion.div {...fadeUp(reduce)} className="mx-auto max-w-2xl space-y-5">
         <p className="about-accent text-lg leading-relaxed text-[var(--text)]">{about.bio}</p>
         <div className="panel panel-interactive panel-accent p-6">

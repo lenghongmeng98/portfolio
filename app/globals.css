@@ -402,3 +402,95 @@ html.dark .glass-card {
   background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
   border: none; margin: 0;
 }
+
+/* ─── LIGHT SAAS REDESIGN ─────────────────────────────────────────── */
+
+/* Hero section gradient backdrop */
+.hero-saas-bg {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37,99,235,0.08), transparent 65%),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(124,58,237,0.05), transparent 60%),
+    var(--bg);
+}
+
+/* Overline pill above section titles */
+.section-overline {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem; font-weight: 600;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-muted);
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(37,99,235,0.14);
+}
+html.dark .section-overline {
+  background: rgba(59,130,246,0.12);
+  border-color: rgba(59,130,246,0.2);
+}
+
+/* Stat card — Stripe-style big-number card */
+.stat-card {
+  flex: 1;
+  padding: 1rem 1.125rem;
+  border-radius: var(--radius-xl);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.stat-card-value {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.75rem; font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-card-label {
+  margin-top: 0.25rem;
+  font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Project banner — gradient preview area */
+.project-banner {
+  height: 8.5rem; border-radius: var(--radius-xl);
+  position: relative; overflow: hidden; margin-bottom: 1.25rem;
+}
+.project-banner-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.project-banner-num {
+  position: absolute; right: 1rem; bottom: 0.625rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 3.75rem; font-weight: 900;
+  color: rgba(255,255,255,0.14); line-height: 1;
+  letter-spacing: -0.05em; pointer-events: none;
+}
+
+/* Pill separator between project meta */
+.meta-dot {
+  display: inline-block; width: 3px; height: 3px;
+  border-radius: 50%; background: var(--border-strong); vertical-align: middle;
+}
+
+/* Scroll-down nudge */
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+.scroll-hint {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.25rem; color: var(--text-tertiary); font-size: 0.6875rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.scroll-hint svg { animation: bounce-down 2.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .scroll-hint svg { animation: none; } }
