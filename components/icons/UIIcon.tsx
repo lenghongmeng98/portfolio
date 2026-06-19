@@ -14,7 +14,8 @@ export type UIIconName =
   | "globe"
   | "send"
   | "github"
-  | "linkedin";
+  | "linkedin"
+  | "code";
 
 const defaults = "h-4 w-4 shrink-0";
 
@@ -116,6 +117,12 @@ export function UIIcon({ name, className = defaults }: Props) {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+        </svg>
+      );
+    case "code":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={cn} aria-hidden>
+          <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
     case "linkedin":

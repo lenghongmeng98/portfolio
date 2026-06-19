@@ -12,7 +12,7 @@ const TRAITS: { icon: UIIconName; accent: string; title: string; sub: string }[]
   {
     icon: "graduation",
     accent: "#2563EB",
-    title: "B.Sc. Computer Science",
+    title: "Bachelor's Degree of Software Development",
     sub: "Norton University of Cambodia",
   },
   {
@@ -20,6 +20,12 @@ const TRAITS: { icon: UIIconName; accent: string; title: string; sub: string }[]
     accent: "#F59E0B",
     title: "2+ Years IT Instructor",
     sub: "KSHRD · Java, Spring Boot & Cloud",
+  },
+  {
+    icon: "code",
+    accent: "#2563EB",
+    title: "4+ Years Software Development",
+    sub: "Full-Stack · Backend · System Design",
   },
   {
     icon: "focus",

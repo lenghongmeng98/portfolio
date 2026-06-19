@@ -16,7 +16,7 @@ export const site = {
 } as const;
 
 export const socialLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/leng-hongmeng" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/leng-hongmeng-07a2a8287/" },
   { label: "Email", href: "mailto:lenghongmeng98@gmail.com" },
   { label: "Website", href: "https://lenghongmeng.site" },
 ] as const;
@@ -159,28 +159,28 @@ export const experience = [
 
 export const projects = [
   {
-    title: "KSHRD Partner Projects",
+    title: "My GitHub",
     description:
-      "Mentored student teams on real partner projects - from requirements and system design through Spring Boot delivery and deployment.",
+      "All my personal projects live here — explore my repositories covering backend systems, APIs, and more.",
     stack: ["Java", "Spring Boot", "PostgreSQL", "REST", "JWT"],
     demo: "https://lenghongmeng.site",
-    github: "https://github.com",
+    github: "https://github.com/lenghongmeng98",
   },
   {
-    title: "Blockchain Training Capstone",
+    title: "Dental Clinic CMS",
     description:
-      "Built decentralized applications on Hyperledger Fabric with Spring Boot REST APIs, Golang smart contracts, Docker containerization, and CouchDB.",
-    stack: ["Hyperledger Fabric", "Spring Boot", "Golang", "Docker", "CouchDB"],
+      "Built a Customer Management System for a dental hospital to manage patient profiles, contact information, appointment scheduling, and treatment records. Designed for clinic staff to streamline daily operations and improve patient care workflows.",
+    stack: ["Spring Boot", "ReactJS", "PostgreSQL", "REST API", "JWT"],
     demo: "https://lenghongmeng.site",
-    github: "https://github.com",
+    github: "https://github.com/lenghongmeng98/cms",
   },
   {
-    title: "CheckInMe Admin Portal",
+    title: "Private Blockchain Network Setup",
     description:
-      "Developed and maintained an early-stage Admin Web Portal with PHP/Laravel for Preah Kossamak Hospital operational workflows.",
-    stack: ["PHP", "Laravel", "MySQL"],
+      "Configured and deployed a private Hyperledger Fabric network with multiple organizations, channels, and peers. Set up crypto materials, Raft consensus ordering service, CouchDB state database, and Hyperledger Explorer for monitoring.",
+    stack: ["Hyperledger Fabric", "Docker", "CouchDB", "Raft Consensus", "Linux"],
     demo: "https://lenghongmeng.site",
-    github: "https://github.com",
+    github: "https://github.com/orgs/setup-private-blockchain-network/repositories",
   },
 ] as const;
 
