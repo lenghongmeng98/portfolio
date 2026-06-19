@@ -121,19 +121,51 @@ function ExpCard({
             {job.summary}
           </p>
 
-          {/* Highlights */}
-          <ul className="mt-4 space-y-2.5">
-            {job.highlights.map((item) => (
-              <li key={item} className="flex gap-3 text-sm leading-relaxed text-[var(--text-secondary)]">
-                <span
-                  className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-full"
-                  style={{ background: accent }}
-                  aria-hidden
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
+          {/* Highlights or structured courses */}
+          {'courses' in job ? (
+            <div className="mt-4 space-y-4">
+              {job.courses.map((course) => (
+                <div key={course.name}>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    <span className="text-sm font-semibold text-[var(--text)]">
+                      {course.name}:
+                    </span>
+                    <span className="text-xs text-[var(--text-tertiary)]">
+                      ({course.period})
+                    </span>
+                  </div>
+                  <ul className="mt-2 space-y-1.5 pl-1">
+                    {course.items.map((item) => (
+                      <li key={item.label} className="flex gap-2.5 text-sm leading-relaxed text-[var(--text-secondary)]">
+                        <span
+                          className="mt-[0.38rem] h-1.5 w-1.5 shrink-0 rounded-full opacity-60"
+                          style={{ background: accent }}
+                          aria-hidden
+                        />
+                        <span>
+                          <span className="font-semibold text-[var(--text)]">{item.label}:</span>{" "}
+                          {item.content}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ul className="mt-4 space-y-2.5">
+              {job.highlights.map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+                  <span
+                    className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ background: accent }}
+                    aria-hidden
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
 
         </div>
       </div>
@@ -145,7 +177,7 @@ export function ExperienceSection() {
   const reduce = useReducedMotion();
 
   return (
-    <SectionShell id="experience" title="Experience" overline="Work History" alt>
+    <SectionShell id="experience" title="Experiences" overline="Work History" alt>
       <ol className="space-y-5">
         {experience.map((job, i) => (
           <ExpCard

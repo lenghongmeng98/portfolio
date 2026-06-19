@@ -119,9 +119,25 @@ export const experience = [
     location: "Phnom Penh",
     summary:
       "1,566-hour intensive program covering full-stack Java development and Hyperledger Fabric blockchain technology.",
-    highlights: [
-      "Basic Course (February, 01st – July, 20th 2023 · Mon–Fri · 7.5 hrs/day · 870 hours): JAVA — J2SE (Basic Java and OOP concepts), J2EE (MVC pattern). WEB — HTML, CSS, JavaScript, CSS FlexBox, Bootstrap 4, ReactJS, JSON. SPRING — Spring Boot, MyBatis Data Access, Spring RESTful Web Service, Spring Security, JSON Web Token, Thymeleaf Engine. Database — Data Modeling, PostgreSQL, SQL (Basic SQL, Advanced SQL).",
-      "Advanced Course (July, 31st – December, 07th 2023 · Mon–Fri · 7.5 hrs/day · 696 hours): Blockchain — Completed blockchain course focusing on Distributed Ledger Technology and decentralized networks via Hyperledger Fabric. Gained technical proficiency in Linux, Docker containerization, CouchDB NoSQL management, and backend development utilizing Spring Boot for RESTful APIs and Golang for Smart Contract (Chaincode) lifecycles. Additionally, acquired hands-on experience in securing blockchain environments, generating cryptographic materials, and maintaining fault tolerance using Raft consensus and Hyperledger Explorer.",
+    highlights: [],
+    courses: [
+      {
+        name: "Basic Course",
+        period: "February, 01st – July, 20th 2023, Mon-Fri, 7.5 hours per day, 870 hours",
+        items: [
+          { label: "JAVA", content: "J2SE (Basic Java and OOP concepts), J2EE (MVC pattern)" },
+          { label: "WEB", content: "HTML, CSS, JavaScript, CSS FlexBox, Bootstrap 4, ReactJS, JSON" },
+          { label: "SPRING", content: "Spring Boot, MyBatis Data Access, Spring RESTful Web Service, Spring Security, JSON Web Token, Thymeleaf Engine" },
+          { label: "Database", content: "Data Modeling, PostgreSQL, SQL (Basic SQL, Advanced SQL)" },
+        ],
+      },
+      {
+        name: "Advanced Course",
+        period: "July, 31st – December, 07th 2023, Mon-Fri, 7.5 hours per day, 696 hours",
+        items: [
+          { label: "Blockchain", content: "Completed blockchain course focusing on Distributed Ledger Technology and decentralized networks via Hyperledger Fabric. Gained technical proficiency in Linux, Docker containerization, CouchDB NoSQL management, and backend development utilizing Spring Boot for RESTful APIs and Golang for Smart Contract (Chaincode) lifecycles. Additionally, acquired hands-on experience in securing blockchain environments, generating cryptographic materials, and maintaining fault tolerance using Raft consensus and Hyperledger Explorer." },
+        ],
+      },
     ],
     tech: ["Java", "Spring Boot", "React", "PostgreSQL", "Hyperledger Fabric", "Golang", "Docker"],
   },

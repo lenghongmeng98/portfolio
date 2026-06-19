@@ -943,7 +943,7 @@ html.dark .glass-panel {
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 .edu-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  border-color: color-mix(in srgb, var(--e-accent, var(--accent)) 22%, var(--border));
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
 }
