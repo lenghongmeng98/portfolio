@@ -426,6 +426,31 @@ html.dark .glass-card {
 }
 .exp-card:hover::before { opacity: 1; }
 
+/* ── Experience: numbered stacked cards ── */
+.exp-num-card {
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+.exp-num-card:hover {
+  border-color: color-mix(in srgb, var(--e-accent, var(--accent)) 28%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--e-accent, var(--accent)) 8%, transparent),
+    var(--shadow-md);
+  transform: translateY(-2px);
+}
+.exp-num {
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  opacity: 0.18;
+  transition: opacity 0.22s ease;
+}
+.exp-num-card:hover .exp-num { opacity: 0.55; }
+
 /* Current role animated dot */
 .timeline-dot-current {
   width: 0.75rem; height: 0.75rem;
