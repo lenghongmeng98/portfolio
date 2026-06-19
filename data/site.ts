@@ -28,27 +28,27 @@ export const about = {
 export const education = [
   {
     period: "2019 – 2023",
-    degree: "BSc Software Development",
-    institution: "Norton University",
-    location: "Phnom Penh",
+    degree: "Bachelor's Degree of Software Development",
+    institution: "Norton University (NU)",
+    location: "Phnom Penh, Cambodia",
     highlights: [
       "Focused on software engineering principles, algorithms, and full-stack development.",
     ],
   },
   {
-    period: "Feb 2023 – Dec 2023",
+    period: "2023",
     degree: "Software Expert Training",
     institution: "Korea Software HRD Center (KSHRD)",
-    location: "Phnom Penh",
+    location: "Phnom Penh, Cambodia",
     highlights: [
-      "1,566-hour intensive program: Java, Spring Boot, ReactJS, PostgreSQL, and Hyperledger Fabric blockchain.",
+      "1,566-hour intensive program covering Java, Spring Boot, ReactJS, PostgreSQL, and Hyperledger Fabric blockchain.",
     ],
   },
   {
     period: "2019 – 2020",
-    degree: "C & C++ Programming",
-    institution: "ETEC",
-    location: "Phnom Penh",
+    degree: "2 Months C & C++ Training",
+    institution: "Engineering of Technology and Electronic Center (ETEC)",
+    location: "Phnom Penh, Cambodia",
     highlights: [
       "Foundational training in systems programming and low-level memory management.",
     ],
@@ -98,43 +98,44 @@ export const skillGroups = [
 
 export const experience = [
   {
-    period: "Jan 2024 - Present",
+    period: "Jan 2024 – Present",
     title: "IT Instructor",
     company: "Korea Software HRD Center (KSHRD)",
     location: "Phnom Penh",
     summary:
-      "Deliver Java and Spring Boot training and mentor students through real-world partner projects from requirements to production.",
+      "Deliver training in Java Programming and Spring Boot, and mentor students through real-world, project-based learning experiences.",
     highlights: [
-      "Train students in Java OOP, Collections Framework, Stream API, Multithreading, JDBC, and Design Patterns.",
-      "Teach Spring Boot and Spring Cloud Microservices - RESTful APIs, Spring Data JPA, Spring Security, API Gateway, Service Discovery (Eureka), Config Server, Circuit Breaker, and Distributed Tracing.",
-      "Mentor students through project-based learning, translating business requirements into production-ready applications.",
+      "Deliver training in Java Programming (OOP, Collections Framework, Stream API, Multithreading, JDBC, and Design Patterns), equipping students with strong software engineering fundamentals and problem-solving skills.",
+      "Teach Spring Boot and Spring Cloud Microservices, covering RESTful API development, Spring Data JPA, Spring Security, API Gateway, Service Discovery (Eureka), Config Server, Circuit Breaker, Distributed Tracing, and inter-service communication.",
+      "Lead project-based learning activities, helping students apply software engineering concepts to real-world business requirements.",
+      "Mentor student teams in collaborative projects with industry partners, including KOSIGN and Hunesion company, providing technical guidance throughout the software development lifecycle."
     ],
     tech: ["Java", "Spring Boot", "Spring Cloud", "PostgreSQL", "REST", "JWT"],
   },
   {
-    period: "Feb 2023 - Dec 2023",
-    title: "Software Expert Training",
+    period: "Feb 2023 – Dec 2023",
+    title: "Software Expert Training Program",
     company: "Korea Software HRD Center (KSHRD)",
     location: "Phnom Penh",
     summary:
-      "1,566-hour intensive program covering full-stack Java development and blockchain technology.",
+      "1,566-hour intensive program covering full-stack Java development and Hyperledger Fabric blockchain technology.",
     highlights: [
-      "Basic (870 hrs): Java J2SE/J2EE, Spring Boot, MyBatis, Spring Security, JWT, ReactJS, PostgreSQL, and data modeling.",
-      "Advanced (696 hrs): Blockchain via Hyperledger Fabric - Docker, CouchDB, Spring Boot APIs, Golang smart contracts, Raft consensus.",
+      "Basic Course (February, 01st – July, 20th 2023 · Mon–Fri · 7.5 hrs/day · 870 hours): JAVA — J2SE (Basic Java and OOP concepts), J2EE (MVC pattern). WEB — HTML, CSS, JavaScript, CSS FlexBox, Bootstrap 4, ReactJS, JSON. SPRING — Spring Boot, MyBatis Data Access, Spring RESTful Web Service, Spring Security, JSON Web Token, Thymeleaf Engine. Database — Data Modeling, PostgreSQL, SQL (Basic SQL, Advanced SQL).",
+      "Advanced Course (July, 31st – December, 07th 2023 · Mon–Fri · 7.5 hrs/day · 696 hours): Blockchain — Completed blockchain course focusing on Distributed Ledger Technology and decentralized networks via Hyperledger Fabric. Gained technical proficiency in Linux, Docker containerization, CouchDB NoSQL management, and backend development utilizing Spring Boot for RESTful APIs and Golang for Smart Contract (Chaincode) lifecycles. Additionally, acquired hands-on experience in securing blockchain environments, generating cryptographic materials, and maintaining fault tolerance using Raft consensus and Hyperledger Explorer.",
     ],
     tech: ["Java", "Spring Boot", "React", "PostgreSQL", "Hyperledger Fabric", "Golang", "Docker"],
   },
   {
-    period: "Oct 2021 - Nov 2022",
+    period: "Oct 2021 – Nov 2022",
     title: "Web Developer",
     company: "CheckInMe",
     location: "Phnom Penh",
     summary:
-      "Built and maintained frontend and backend features for a client portal and admin web portal.",
+      "Implemented and maintained frontend and backend features for a client portal and admin web portal.",
     highlights: [
       "Implemented and enhanced functionalities within the Client Portal to support business processes.",
-      "Developed and maintained an early-stage Admin Web Portal using PHP, Laravel, and MySQL.",
-      "Collaborated on feature customization to meet the operational requirements of Preah Kossamak Hospital.",
+      "Developed and maintained frontend and backend features for an early-stage Admin Web Portal using PHP, Laravel, and MySQL.",
+      "Collaborated in the customization and feature implementation to meet the operational requirements of Preah Kossamak Hospital.",
     ],
     tech: ["PHP", "Laravel", "MySQL"],
   },

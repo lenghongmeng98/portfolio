@@ -14,9 +14,15 @@ export function SiteHeader() {
   const [active, setActive] = useState<string>(nav[0].id);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(max > 0 ? y / max : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -73,20 +79,14 @@ export function SiteHeader() {
             : "border-b border-transparent bg-transparent",
         ].join(" ")}
       >
-        {/* Top gradient rule — visible when scrolled */}
-        <AnimatePresence>
-          {scrolled && !reduce && (
-            <motion.div
-              key="top-rule"
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: 1 }}
-              exit={{ scaleX: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: EASE_OUT }}
-              className="accent-line pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left"
-              aria-hidden
-            />
-          )}
-        </AnimatePresence>
+        {/* Scroll progress bar */}
+        {!reduce && (
+          <div
+            className="accent-line pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left"
+            style={{ transform: `scaleX(${scrollProgress})` }}
+            aria-hidden
+          />
+        )}
 
         <div className="layout-shell flex h-16 items-center justify-between gap-4">
 

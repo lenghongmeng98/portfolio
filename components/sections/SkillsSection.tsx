@@ -43,10 +43,10 @@ const SKILL_BRAND: Record<string, Brand> = {
 };
 
 const GROUP_META = {
-  "Backend":        { accent: "#2563EB", speed: 28, reverse: false },
-  "Web":            { accent: "#F59E0B", speed: 22, reverse: true  },
-  "Data & Tools":   { accent: "#7C3AED", speed: 26, reverse: false },
-  "AI-Assisted Dev":{ accent: "#10B981", speed: 20, reverse: true  },
+  "Backend":        { accent: "#2563EB", speed: 55, reverse: false },
+  "Web":            { accent: "#F59E0B", speed: 44, reverse: true  },
+  "Data & Tools":   { accent: "#7C3AED", speed: 52, reverse: false },
+  "AI-Assisted Dev":{ accent: "#10B981", speed: 40, reverse: true  },
 } as const;
 
 function SkillPill({ skill, accent }: { skill: string; accent: string }) {
@@ -119,7 +119,7 @@ export function SkillsSection() {
       <div className="space-y-5">
         {skillGroups.map((group, gi) => {
           const meta = GROUP_META[group.label as keyof typeof GROUP_META]
-            ?? { accent: "#2563EB", speed: 25, reverse: false };
+            ?? { accent: "#2563EB", speed: 50, reverse: false };
           const isAI = group.label === "AI-Assisted Dev";
 
           return (
