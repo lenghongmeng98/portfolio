@@ -22,7 +22,7 @@ export const socialLinks = [
 ] as const;
 
 export const about = {
-  bio: "Software Engineer and IT Instructor with over 2 years of experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. At the Korea Software HRD Center, I mentor and guide aspiring students through real-world partner projects, supporting them in requirements analysis, system design, implementation, testing, and deployment. Passionate about fostering technical excellence, continuous learning, and bridging the gap between academic knowledge and industry expectations through hands-on, project-based learning.",
+  bio: "Software Engineer and IT Instructor with experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. At the Korea Software HRD Center, I mentor and guide aspiring students through real-world partner projects, supporting them in requirements analysis, system design, implementation, testing, and deployment. Passionate about fostering technical excellence, continuous learning, and bridging the gap between academic knowledge and industry expectations through hands-on, project-based learning.",
 } as const;
 
 export const education = [
