@@ -52,7 +52,10 @@ export function SiteHeader() {
   const nameParts = site.name.split(" ");
 
   return (
-    <header
+    <motion.header
+      initial={reduce ? {} : { y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: EASE_OUT }}
       className={[
         "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
@@ -84,18 +87,18 @@ export function SiteHeader() {
                 className={[
                   "focus-ring relative rounded-md px-3 py-2",
                   textNav,
-                  on ? "nav-active" : "",
+                  on ? "text-[var(--accent)] font-semibold" : "",
                 ].join(" ")}
               >
-                {item.label}
                 {on && !reduce && (
                   <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute bottom-0.5 left-3 right-3 h-0.5 rounded-full"
-                    style={{ background: "var(--gradient-accent)" }}
-                    transition={{ duration: 0.25, ease: EASE_OUT }}
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-md"
+                    style={{ background: "var(--accent-muted)" }}
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
+                <span className="relative z-10">{item.label}</span>
               </button>
             );
           })}
@@ -114,11 +117,28 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-              {open
-                ? <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-                : <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />}
-            </svg>
+            <motion.div
+              animate={{ rotate: open ? 90 : 0 }}
+              transition={{ duration: 0.22, ease: EASE_OUT }}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {open ? (
+                  <motion.svg key="close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden
+                    initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+                  </motion.svg>
+                ) : (
+                  <motion.svg key="open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden
+                    initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+                  </motion.svg>
+                )}
+              </AnimatePresence>
+            </motion.div>
           </button>
         </div>
       </div>
@@ -157,6 +177,6 @@ export function SiteHeader() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

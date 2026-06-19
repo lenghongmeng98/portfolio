@@ -16,10 +16,7 @@ export function SectionHeading({ title, description, overline }: Props) {
 
   return (
     <motion.header {...fadeUp(reduce)} className="mb-12 flex flex-col items-center text-center md:mb-14">
-      {overline && (
-        <span className="section-overline mb-4">{overline}</span>
-      )}
-      <h2 className={textSectionTitle}>{title}</h2>
+<h2 className={textSectionTitle}>{title}</h2>
       <div
         className="mx-auto mt-4 h-[2px] w-10 rounded-full"
         style={{ background: "var(--gradient-accent)" }}

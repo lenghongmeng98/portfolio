@@ -23,9 +23,37 @@ export const socialLinks = [
 
 export const about = {
   bio: "Software Engineer and IT Instructor with over 2 years of experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. At the Korea Software HRD Center, I mentor and guide aspiring students through real-world partner projects, supporting them in requirements analysis, system design, implementation, testing, and deployment. Passionate about fostering technical excellence, continuous learning, and bridging the gap between academic knowledge and industry expectations through hands-on, project-based learning.",
-  education:
-    "BSc Software Development, Norton University (2019-2023) · Software Expert Training, KSHRD (2023) · C&C++ Training, ETEC (2019-2020)",
 } as const;
+
+export const education = [
+  {
+    period: "2019 – 2023",
+    degree: "BSc Software Development",
+    institution: "Norton University",
+    location: "Phnom Penh",
+    highlights: [
+      "Focused on software engineering principles, algorithms, and full-stack development.",
+    ],
+  },
+  {
+    period: "Feb 2023 – Dec 2023",
+    degree: "Software Expert Training",
+    institution: "Korea Software HRD Center (KSHRD)",
+    location: "Phnom Penh",
+    highlights: [
+      "1,566-hour intensive program: Java, Spring Boot, ReactJS, PostgreSQL, and Hyperledger Fabric blockchain.",
+    ],
+  },
+  {
+    period: "2019 – 2020",
+    degree: "C & C++ Programming",
+    institution: "ETEC",
+    location: "Phnom Penh",
+    highlights: [
+      "Foundational training in systems programming and low-level memory management.",
+    ],
+  },
+] as const;
 
 export const skillGroups = [
   {
@@ -148,6 +176,8 @@ export const nav = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "about", label: "About" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ] as const;
 

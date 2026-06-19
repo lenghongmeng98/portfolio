@@ -10,12 +10,8 @@ export function AboutSection() {
 
   return (
     <SectionShell id="about" title="About Me" overline="Background">
-      <motion.div {...fadeUp(reduce)} className="mx-auto max-w-2xl space-y-5">
+      <motion.div {...fadeUp(reduce)} className="mx-auto max-w-2xl">
         <p className="about-accent text-lg leading-relaxed text-[var(--text)]">{about.bio}</p>
-        <div className="panel panel-interactive panel-accent p-6">
-          <p className="text-sm font-semibold text-[var(--text)]">Education</p>
-          <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{about.education}</p>
-        </div>
       </motion.div>
     </SectionShell>
   );
