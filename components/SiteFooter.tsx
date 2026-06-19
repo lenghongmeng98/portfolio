@@ -1,7 +1,6 @@
 "use client";
 
-import { contact, site, socialLinks } from "@/data/site";
-import { socialIconFor, UIIcon } from "@/components/icons/UIIcon";
+import { contact, site } from "@/data/site";
 
 function go(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -21,20 +20,6 @@ export function SiteFooter() {
           <p className="mt-1 text-sm text-[var(--text-tertiary)]">{site.role}</p>
         </div>
 
-        <nav aria-label="Social profiles" className="flex flex-wrap gap-2">
-          {socialLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="focus-ring btn-ghost rounded-full border border-[var(--border)] !px-3 transition-[border-color,color] hover:border-[var(--border-strong)]"
-            >
-              <UIIcon name={socialIconFor(link.label)} className="h-4 w-4" />
-              {link.label}
-            </a>
-          ))}
-        </nav>
       </div>
 
       <div className="layout-shell mt-8 flex flex-col gap-3 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">

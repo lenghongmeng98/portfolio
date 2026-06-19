@@ -996,7 +996,7 @@ html.dark .glass-panel {
 
 /* ─ Hamburger button ──────────────────────────────────────────── */
 .nav-hamburger {
-  display: flex; align-items: center; justify-content: center;
+  align-items: center; justify-content: center;
   width: 2.25rem; height: 2.25rem; border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   color: var(--text-secondary);

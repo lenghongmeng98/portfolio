@@ -103,12 +103,6 @@ export function SiteHeader() {
             className="focus-ring group flex cursor-pointer items-center gap-2.5 select-none"
           >
             <span className="nav-monogram" aria-hidden>{initials}</span>
-            <span className="hidden font-display text-sm font-bold tracking-tight sm:flex sm:flex-col sm:leading-none">
-              <span className="gradient-text-animate">{site.name.split(" ")[0]}</span>
-              <span className="text-[0.65rem] font-normal text-[var(--text-tertiary)]">
-                {site.name.split(" ").slice(1).join(" ")}
-              </span>
-            </span>
           </button>
 
           {/* ── Desktop nav ── */}
@@ -139,23 +133,13 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle className="hidden cursor-pointer sm:flex" />
 
-            <a
-              href="#contact"
-              className="focus-ring btn-primary hidden cursor-pointer items-center gap-1.5 !py-2 !text-sm sm:inline-flex"
-            >
-              Hire me
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-
             {/* Hamburger */}
             <button
               type="button"
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
               aria-label={open ? "Close menu" : "Open menu"}
-              className="nav-hamburger focus-ring cursor-pointer md:hidden"
+              className="nav-hamburger focus-ring flex cursor-pointer md:hidden"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {open ? (

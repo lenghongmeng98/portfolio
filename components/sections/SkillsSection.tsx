@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DiJava, DiCss3, DiMysql, DiAws } from "react-icons/di";
 import {
@@ -81,16 +82,20 @@ function MarqueeTrack({
   reverse: boolean;
   reduce: boolean | null;
 }) {
-  // 4× repetition ensures seamless loop even for short lists
+  const [hovered, setHovered] = useState(false);
   const repeated = [...skills, ...skills, ...skills, ...skills];
 
   return (
-    <div className="marquee-wrap">
+    <div
+      className="marquee-wrap"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div
         className={`marquee-inner${reverse ? " marquee-reverse" : ""}`}
         style={{
           "--marquee-speed": `${speed}s`,
-          animationPlayState: reduce ? "paused" : "running",
+          animationPlayState: reduce || hovered ? "paused" : "running",
         } as React.CSSProperties}
       >
         {repeated.map((skill, i) => (
@@ -138,7 +143,7 @@ export function SkillsSection() {
                   >
                     {group.label}
                   </span>
-                  {isAI && <span className="badge-new">New</span>}
+                 
                 </div>
                 <span className="text-[0.7rem] font-medium text-[var(--text-tertiary)]">
                   {group.skills.length} skills

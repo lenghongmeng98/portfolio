@@ -135,12 +135,6 @@ function ExpCard({
             ))}
           </ul>
 
-          {/* Tech stack */}
-          <div className="mt-6 flex flex-wrap gap-1.5">
-            {job.tech.map((t) => (
-              <span key={t} className="tag">{t}</span>
-            ))}
-          </div>
         </div>
       </div>
     </motion.li>

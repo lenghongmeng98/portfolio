@@ -13,7 +13,7 @@ const METHODS = [
     icon: "mail" as UIIconName,
     accent: "#2563EB",
     label: "Email",
-    value: "lenghongmeng98@gmail.com",
+    value: contact.email,
     href: `mailto:${contact.email}`,
     action: "Send message",
     external: false,
@@ -26,24 +26,6 @@ const METHODS = [
     href: "https://www.linkedin.com/in/leng-hongmeng",
     action: "View profile",
     external: true,
-  },
-  {
-    icon: "globe" as UIIconName,
-    accent: "#7C3AED",
-    label: "Website",
-    value: "lenghongmeng.site",
-    href: site.url,
-    action: "Visit site",
-    external: true,
-  },
-  {
-    icon: "phone" as UIIconName,
-    accent: "#10B981",
-    label: "Phone",
-    value: site.phone,
-    href: `tel:${site.phone.replace(/\s/g, "")}`,
-    action: "Call",
-    external: false,
   },
 ] as const;
 
@@ -138,51 +120,26 @@ export function ContactSection() {
   const reduce = useReducedMotion();
 
   return (
-    <SectionShell
-      id="contact"
-      title="Get in Touch"
-      overline="Contact"
-    >
+    <SectionShell id="contact" title="Get in Touch" overline="Contact">
       <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
 
-        {/* ── Left: CTA copy ── */}
-        <motion.div {...blurFadeUp(reduce)} className="space-y-7">
-          {/* Status */}
-          <span className="status-pill inline-flex">
-            <span className="status-dot" aria-hidden />
-            {site.availability}
-          </span>
-
-          {/* Headline */}
+        {/* ── Left: Headline + CTAs ── */}
+        <motion.div {...blurFadeUp(reduce)} className="space-y-8">
           <div>
             <h3 className="font-display text-4xl font-extrabold leading-[1.1] tracking-[-0.03em] text-[var(--text)] sm:text-5xl">
               Let&apos;s build<br />
-              <span className="gradient-text-animate">something great.</span>
+              <span className="gradient-text">something great.</span>
             </h3>
-            <p className="mt-5 max-w-[42ch] text-[1.0625rem] leading-relaxed text-[var(--text-secondary)]">
-              I&apos;m open to software engineering roles, IT instructor positions,
-              and collaborative projects. Drop me a message — I usually reply within a day.
-            </p>
+            <blockquote className="mt-5 border-l-2 border-[var(--accent)] pl-4">
+              <p className="max-w-[38ch] text-[1.0625rem] italic leading-relaxed text-[var(--text-secondary)]">
+                &ldquo;The best way to predict the future is to invent it together.&rdquo;
+              </p>
+              <cite className="mt-2 block text-sm font-medium not-italic text-[var(--text-tertiary)]">
+                — Alan Kay
+              </cite>
+            </blockquote>
           </div>
 
-          {/* Primary contact info */}
-          <div className="space-y-2">
-            <a
-              href={`mailto:${contact.email}`}
-              className="group inline-flex items-center gap-2 text-[var(--accent)] transition-colors hover:text-[var(--accent-dark,var(--accent))]"
-            >
-              <UIIcon name="mail" className="h-4 w-4 shrink-0" />
-              <span className="text-base font-semibold underline-offset-4 group-hover:underline">
-                {contact.email}
-              </span>
-            </a>
-            <p className="flex items-center gap-2 text-sm text-[var(--text-tertiary)]">
-              <UIIcon name="phone" className="h-3.5 w-3.5 shrink-0" />
-              {site.phone}
-            </p>
-          </div>
-
-          {/* CTAs */}
           <div className="flex flex-wrap gap-3">
             <a href={`mailto:${contact.email}`} className="btn-primary focus-ring gap-2">
               <UIIcon name="send" className="h-4 w-4" />
@@ -196,24 +153,6 @@ export function ContactSection() {
               {site.resume.label}
             </a>
           </div>
-
-          {/* Social links */}
-          <nav aria-label="Social profiles" className="flex flex-wrap gap-2 pt-1">
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                whileHover={reduce ? undefined : { y: -2 }}
-                transition={{ duration: 0.15 }}
-                className="focus-ring flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-              >
-                <UIIcon name={socialIconFor(link.label)} className="h-3.5 w-3.5" />
-                {link.label}
-              </motion.a>
-            ))}
-          </nav>
         </motion.div>
 
         {/* ── Right: Contact method cards ── */}
