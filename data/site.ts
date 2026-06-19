@@ -4,7 +4,7 @@ export const site = {
   name: "Leng Hongmeng",
   role: "IT Instructor · Software Engineer",
   summary:
-    "Software Engineer and IT Instructor with over 2 years of experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. Experienced in designing scalable applications, developing RESTful APIs, and system integration, with a strong foundation in backend architecture and system design.",
+    "Software Engineer and IT Instructor with experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. Experienced in designing scalable applications, developing RESTful APIs, and system integration, with a strong foundation in backend architecture and system design.",
   location: "Sen Sok, Phnom Penh",
   availability: "Open to software engineering & teaching roles",
   url: "https://lenghongmeng.site",
