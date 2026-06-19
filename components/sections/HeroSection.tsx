@@ -7,6 +7,7 @@ import { UIIcon, socialIconFor } from "@/components/icons/UIIcon";
 import { Container } from "@/components/ui/Container";
 import { ConstellationCanvas } from "@/components/ui/ConstellationCanvas";
 import { staggerContainer, staggerItem, EASE_OUT } from "@/lib/motion";
+import { scrollToSection } from "@/lib/scroll";
 
 const HERO_BIO =
   "Software Engineer and IT Instructor specializing in scalable backend systems with Java and Spring Boot. Passionate about clean architecture and technical mentorship.";
@@ -23,7 +24,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex items-center border-b border-[var(--border)] bg-[var(--bg)] py-20 md:py-28"
+      className="relative flex items-center bg-[var(--bg)] py-20 md:py-28"
       style={{ minHeight: "92vh" }}
     >
       <ConstellationCanvas reduce={!!reduce} />
@@ -78,13 +79,17 @@ export function HeroSection() {
               variants={staggerItem(reduce)}
               className="mt-8 flex flex-wrap gap-3"
             >
-              <a href={site.resume.href} download className="btn-primary focus-ring gap-2">
+              <button
+                type="button"
+                onClick={() => scrollToSection("projects")}
+                className="btn-primary focus-ring gap-2"
+              >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.2" aria-hidden>
-                  <path d="M12 15V3M8 11l4 4 4-4M3 19h18" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M3 7h18M3 12h18M3 17h18" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                {site.resume.label}
-              </a>
+                My Projects
+              </button>
               <a href="#contact" className="btn-secondary focus-ring">Get in touch</a>
             </motion.div>
 

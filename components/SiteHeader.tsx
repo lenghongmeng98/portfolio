@@ -5,14 +5,9 @@ import { useEffect, useState } from "react";
 import { nav, site } from "@/data/site";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { EASE_OUT } from "@/lib/motion";
+import { scrollToSection } from "@/lib/scroll";
 
-function go(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const HEADER_H = 64; // h-16
-  const top = el.getBoundingClientRect().top + window.scrollY - HEADER_H;
-  window.scrollTo({ top, behavior: "smooth" });
-}
+const go = scrollToSection;
 
 export function SiteHeader() {
   const reduce = useReducedMotion();
