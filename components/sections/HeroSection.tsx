@@ -121,7 +121,7 @@ export function HeroSection() {
             initial={reduce ? {} : { opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, delay: 0.18, ease: EASE_OUT }}
-            className="flex justify-center lg:justify-end"
+            className="order-first flex justify-center lg:order-last lg:justify-end"
           >
             {/* Wrapper gives space for the floating shapes */}
             <div style={{ position: "relative", padding: "44px 52px 44px 44px", flexShrink: 0 }}>
