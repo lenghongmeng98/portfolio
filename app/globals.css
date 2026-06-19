@@ -772,10 +772,14 @@ html.dark .hero-float-card {
 }
 
 /* ─ Animated accent line ──────────────────────────────────────── */
+@keyframes accent-sweep {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
 .accent-line {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2), #84CC16, var(--accent));
-  background-size: 300% 100%;
-  animation: gradient-flow 3s ease infinite;
+  background: linear-gradient(90deg, #059669 0%, #14B8A6 25%, #84CC16 50%, #14B8A6 75%, #059669 100%);
+  background-size: 200% 100%;
+  animation: accent-sweep 3s linear infinite;
 }
 
 /* ─ btn-primary shimmer on hover ──────────────────────────────── */
@@ -1031,7 +1035,7 @@ html.dark .glass-panel {
 /* ─ Reduced motion overrides ──────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .heading-gradient      { animation: none; }
-  .accent-line           { animation: none; }
+  .accent-line           { animation: none; background-position: 0% 0; }
   .btn-primary::after    { display: none; }
   .project-banner-shine  { animation: none; }
   .contact-glow-wrap     { animation: none; }
