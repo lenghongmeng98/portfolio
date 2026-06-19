@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { textSectionTitle } from "@/components/ui/typography";
-import { fadeUp } from "@/lib/motion";
+import { blurFadeUp } from "@/lib/motion";
 
 type Props = {
   title: ReactNode;
@@ -11,17 +10,15 @@ type Props = {
   overline?: string;
 };
 
-export function SectionHeading({ title, description, overline }: Props) {
+export function SectionHeading({ title, description }: Props) {
   const reduce = useReducedMotion();
 
   return (
-    <motion.header {...fadeUp(reduce)} className="mb-12 flex flex-col items-center text-center md:mb-14">
-<h2 className={textSectionTitle}>{title}</h2>
-      <div
-        className="mx-auto mt-4 h-[2px] w-10 rounded-full"
-        style={{ background: "var(--gradient-accent)" }}
-        aria-hidden
-      />
+    <motion.header {...blurFadeUp(reduce)} className="mb-12 flex flex-col items-center text-center md:mb-14">
+      <h2 className="heading-gradient font-display text-[1.875rem] font-bold leading-tight tracking-[-0.03em] sm:text-[2.5rem]">
+        {title}
+      </h2>
+      <div className="accent-line mx-auto mt-4 h-[3px] w-12 rounded-full" aria-hidden />
       {description && (
         <p className="mx-auto mt-5 max-w-lg text-[var(--text-secondary)]">{description}</p>
       )}

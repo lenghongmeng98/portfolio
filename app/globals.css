@@ -214,6 +214,91 @@ html.dark .panel::before {
 .skill-tile:hover { border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); background: var(--accent-muted); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .skill-tile-ai:hover { border-color: color-mix(in srgb, var(--accent-2) 30%, var(--border)); background: var(--accent-2-muted); }
 
+/* ── Marquee skill strips ── */
+@keyframes marquee-left  { from { transform: translateX(0); } to { transform: translateX(-25%); } }
+@keyframes marquee-right { from { transform: translateX(-25%); } to { transform: translateX(0); } }
+
+.marquee-section {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 1.125rem 0 1.125rem;
+  overflow: hidden;
+}
+.marquee-section > .mb-2\.5 { padding-inline: 1.25rem; }
+.marquee-wrap {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+.marquee-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: max-content;
+  padding: 0.25rem 0;
+  animation: marquee-left var(--marquee-speed, 28s) linear infinite;
+}
+.marquee-inner.marquee-reverse { animation-name: marquee-right; }
+.marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
+
+.marquee-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.3125rem 0.875rem 0.3125rem 0.3125rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  cursor: default;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.6) inset;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  user-select: none;
+}
+html.dark .marquee-pill {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+.marquee-pill:hover {
+  border-color: color-mix(in srgb, var(--pill-accent, var(--accent)) 40%, var(--border));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--pill-accent, var(--accent)) 10%, transparent),
+    0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+.marquee-pill-icon {
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem; height: 1.5rem;
+  border-radius: 6px;
+  transition: transform 0.18s ease;
+}
+.marquee-pill:hover .marquee-pill-icon { transform: scale(1.1); }
+/* ── Bento card (new skills layout) ── */
+.skill-group-card {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--card-accent, var(--accent)) 9%, var(--bg-elevated)) 0%, var(--bg-elevated) 55%);
+  box-shadow: inset 0 2.5px 0 0 var(--card-accent, var(--accent)), var(--shadow-sm);
+  padding: 1.75rem 1.875rem 2rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.skill-group-card:hover {
+  border-color: color-mix(in srgb, var(--card-accent, var(--accent)) 32%, var(--border));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--card-accent, var(--accent)) 14%, var(--bg-elevated)) 0%, var(--bg-elevated) 55%);
+  box-shadow:
+    inset 0 2.5px 0 0 var(--card-accent, var(--accent)),
+    0 0 0 1px color-mix(in srgb, var(--card-accent, var(--accent)) 12%, transparent),
+    0 8px 32px -4px color-mix(in srgb, var(--card-accent, var(--accent)) 18%, transparent),
+    var(--shadow-md);
+  transform: translateY(-3px);
+}
+.skill-chip { display: inline-flex; align-items: center; gap: 0.3125rem; padding: 0.25rem 0.625rem; border-radius: 9999px; border: 1px solid var(--border); background: var(--bg); font-size: 0.75rem; font-weight: 500; color: var(--text-secondary); white-space: nowrap; transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease; }
+.skill-chip:hover { border-color: color-mix(in srgb, var(--accent) 30%, var(--border)); background: var(--accent-muted); color: var(--text); }
+
 /* Tabs */
 .tab-list { display: flex; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
 .tab-list::-webkit-scrollbar { display: none; }
@@ -226,7 +311,7 @@ html.dark .panel::before {
 /* Misc */
 ::selection { background: var(--accent-muted); color: var(--text); }
 @media (prefers-reduced-motion: reduce) {
-  .panel-interactive:hover, .btn-primary:hover, .btn-secondary:hover, .skill-tile:hover { transform: none; }
+  .panel-interactive:hover, .btn-primary:hover, .btn-secondary:hover, .skill-tile:hover, .skill-group-card:hover { transform: none; }
   .status-dot { animation: none; }
 }
 
@@ -515,8 +600,8 @@ html.dark .section-overline {
   position: relative;
   width: 260px; height: 320px;
   flex-shrink: 0;
-  margin-top: 3.75rem;
-  margin-bottom: 3.25rem;
+  margin-top: 1.25rem;   /* reduced — top badge is smaller now */
+  margin-bottom: 3.25rem; /* kept — location badge overflows below */
 }
 @media (min-width: 1024px) {
   .hero-photo-wrap { width: 310px; height: 380px; }
@@ -551,73 +636,379 @@ html.dark .section-overline {
   background: var(--bg);
 }
 
-/* Base floating badge — dark frosted glass */
+/* Base floating badge — light glassmorphism */
 .hero-float-card {
   position: absolute;
-  display: flex; align-items: center; gap: 0.45rem;
-  background: rgba(10, 16, 40, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-xl);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.24),
-    0 2px 8px rgba(0, 0, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  padding: 0.55rem 0.9rem;
+  box-shadow: 0 4px 20px rgba(15,23,42,0.09), inset 0 1px 0 #fff;
+  padding: 0.5rem 0.875rem;
   font-size: 0.75rem; font-weight: 500;
-  color: #CBD5E1;
+  color: var(--text);
   white-space: nowrap;
   z-index: 10;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
-/* Tags inside the dark badge */
-.hero-float-card .tag {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #94A3B8;
-}
-.hero-float-card .tag:hover {
-  background: rgba(255, 255, 255, 0.14);
+html.dark .hero-float-card {
+  background: rgba(15, 23, 42, 0.82);
+  border-color: rgba(255,255,255,0.10);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.06);
   color: #CBD5E1;
-  box-shadow: none;
 }
 
-/* Location badge — below the photo frame */
+/* Location badge — bottom left */
 .hero-float-bottom {
   bottom: -3.25rem;
   left: 1rem;
 }
 
-/* Tech tags badge — above the photo frame */
-.hero-float-top {
-  top: -3.75rem;
-  right: 1rem;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  max-width: 210px;
-  padding: 0.625rem 0.75rem;
-  align-items: flex-start;
+/* Role badge — top right, just outside the frame */
+.hero-badge-tr {
+  top: -1.125rem;
+  right: -0.75rem;
+}
+
+/* Pulsing live dot inside the role badge */
+.hero-badge-live-dot {
+  width: 0.5rem; height: 0.5rem; border-radius: 50%; flex-shrink: 0;
+  background: var(--gradient-accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Tech pills below the photo */
+.hero-tech-pill {
+  display: inline-flex; align-items: center;
+  padding: 0.3rem 0.8rem; border-radius: 9999px;
+  font-size: 0.75rem; font-weight: 500;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.hero-tech-pill:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  color: var(--accent);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 639px) {
   .hero-float-bottom { left: 0.5rem; }
-  .hero-float-top    { right: 0.5rem; }
+  .hero-badge-tr     { right: 0.5rem; }
 }
 
-/* ─── HERO PHOTO + BADGE ANIMATIONS ────────────────────────────────── */
-
-/* Badge glow pulse */
+/* ─── HERO BADGE ANIMATION ──────────────────────────────────────────── */
 @keyframes badge-pulse {
-  0%, 100% {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.24), 0 2px 8px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.07);
-  }
-  50% {
-    box-shadow: 0 8px 40px rgba(0,0,0,0.30), 0 0 18px rgba(37,99,235,0.18), 0 2px 8px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.07);
-  }
+  0%, 100% { box-shadow: 0 4px 20px rgba(15,23,42,0.09), inset 0 1px 0 #fff; }
+  50%       { box-shadow: 0 6px 28px rgba(37,99,235,0.14), inset 0 1px 0 #fff; }
 }
 .hero-float-card { animation: badge-pulse 3s ease-in-out infinite; }
-.hero-float-top  { animation-delay: 1.5s; }
+.hero-badge-tr   { animation-delay: 1s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-float-card { animation: none; }
+  .hero-float-card   { animation: none; }
+  .hero-badge-live-dot { animation: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PREMIUM REDESIGN — Cool · Fancy · Fluid
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ─ Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gradient-accent); border-radius: 9999px; }
+* { scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+
+/* ─ Keyframes ─────────────────────────────────────────────────── */
+@keyframes shine-slide {
+  0%   { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(260%)  skewX(-20deg); }
+}
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0%   50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ─ Gradient section headings ─────────────────────────────────── */
+.heading-gradient {
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 55%, var(--accent-2) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 6s ease infinite;
+}
+
+/* ─ Animated accent line ──────────────────────────────────────── */
+.accent-line {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), #06B6D4, var(--accent));
+  background-size: 300% 100%;
+  animation: gradient-flow 3s ease infinite;
+}
+
+/* ─ btn-primary shimmer on hover ──────────────────────────────── */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.22) 50%, transparent 75%);
+  transform: translateX(-120%);
+}
+.btn-primary:hover::after {
+  transform: translateX(220%);
+  transition: transform 0.55s ease;
+}
+
+/* ─ Spotlight card (premium hover with glow) ──────────────────── */
+.spotlight-card {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.spotlight-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  box-shadow: var(--shadow-xl), 0 0 0 1px color-mix(in srgb, var(--accent) 8%, transparent), 0 0 48px var(--accent-glow);
+  transform: translateY(-5px);
+}
+
+/* ─ Glass panel utility ───────────────────────────────────────── */
+.glass-panel {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.88);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+html.dark .glass-panel {
+  background: rgba(15,23,42,0.72);
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ─ Remove per-item border when premium rail replaces it ─────── */
+.timeline { border-left: none; }
+
+/* ─ Premium timeline rail ─────────────────────────────────────── */
+.timeline-rail-premium {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 2px; border-radius: 9999px;
+  background: linear-gradient(to bottom, transparent 0%, var(--accent) 25%, var(--accent-2) 75%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* ─ Current role badge ────────────────────────────────────────── */
+.badge-current {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.3rem 0.875rem; border-radius: 9999px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.025em;
+  background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.10));
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+  color: var(--accent);
+}
+.badge-current-dot {
+  width: 0.4375rem; height: 0.4375rem; border-radius: 50%;
+  background: var(--gradient-accent);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─ Project banner animated shine ────────────────────────────── */
+.project-banner-shine {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 28%, rgba(255,255,255,0.14) 50%, transparent 72%);
+  animation: shine-slide 4s ease-in-out infinite;
+}
+
+/* ─ Contact glow card ─────────────────────────────────────────── */
+/* ── Contact method cards ── */
+.contact-method-card {
+  position: relative; overflow: hidden;
+  display: block;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.contact-method-card:hover {
+  border-color: color-mix(in srgb, var(--m-accent, var(--accent)) 35%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--m-accent, var(--accent)) 10%, transparent),
+    0 6px 20px -4px color-mix(in srgb, var(--m-accent, var(--accent)) 18%, transparent),
+    var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.contact-glow-wrap {
+  position: relative;
+  border-radius: calc(var(--radius-2xl) + 3px);
+  padding: 2px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2), #06B6D4, var(--accent));
+  background-size: 300% 300%;
+  animation: gradient-flow 5s ease infinite;
+  box-shadow: var(--shadow-xl), 0 0 60px var(--accent-glow), 0 0 30px var(--accent-2-glow);
+}
+.contact-glow-inner {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-2xl);
+  position: relative; overflow: hidden;
+}
+.contact-glow-inner::before {
+  content: ''; pointer-events: none;
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(37,99,235,0.07), transparent 65%);
+}
+
+/* ─ About highlight cards ─────────────────────────────────────── */
+.about-highlight {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.25rem; border-radius: var(--radius-xl);
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.about-highlight:hover {
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+  box-shadow: var(--shadow-md); transform: translateY(-2px);
+}
+.about-highlight-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.5rem; height: 2.5rem; border-radius: var(--radius-lg); flex-shrink: 0;
+  background: var(--accent-muted); color: var(--accent);
+}
+/* ── About stat cards (redesigned) ── */
+.about-stat-card {
+  position: relative; overflow: hidden; group: "";
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+.about-stat-card:hover {
+  border-color: color-mix(in srgb, var(--card-accent, var(--accent)) 30%, var(--border));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--card-accent, var(--accent)) 10%, transparent),
+    0 8px 24px -4px color-mix(in srgb, var(--card-accent, var(--accent)) 16%, transparent),
+    var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* ── Education cards ── */
+.edu-card {
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.edu-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.edu-banner {
+  height: 8rem; border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  position: relative; overflow: hidden;
+}
+.edu-banner-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.edu-banner-mono {
+  position: absolute; right: 0.875rem; bottom: -0.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 3.25rem; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.13); letter-spacing: -0.04em;
+  pointer-events: none; user-select: none;
+}
+.edu-banner-period {
+  position: absolute; right: 0.875rem; top: 0.875rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem; font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  background: rgba(0,0,0,0.25); backdrop-filter: blur(6px);
+  padding: 0.2rem 0.55rem; border-radius: 9999px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PREMIUM NAVBAR
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─ Monogram badge ────────────────────────────────────────────── */
+.nav-monogram {
+  display: flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem; border-radius: var(--radius-lg); flex-shrink: 0;
+  font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.04em; color: #fff;
+  background: var(--gradient-accent);
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.15), 0 2px 10px rgba(37,99,235,0.25);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.group:hover .nav-monogram {
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.22), 0 4px 16px rgba(37,99,235,0.32);
+  transform: scale(1.06);
+}
+
+/* ─ Sliding pill background ───────────────────────────────────── */
+.nav-pill-bg {
+  background: var(--accent-muted);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* ─ Hamburger button ──────────────────────────────────────────── */
+.nav-hamburger {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem; border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.nav-hamburger:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: var(--accent-muted);
+  color: var(--accent);
+}
+
+/* ─ Mobile overlay ────────────────────────────────────────────── */
+.mobile-nav-overlay {
+  position: fixed; left: 0; right: 0; top: 4rem; bottom: 0; z-index: 40;
+  padding: 0.625rem 1rem 1rem;
+}
+.mobile-nav-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(2,6,23,0.5);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+.mobile-nav-card {
+  position: relative; z-index: 1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl), 0 0 48px rgba(37,99,235,0.10);
+  overflow: hidden;
+}
+
+/* ─ Reduced motion overrides ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .heading-gradient      { animation: none; }
+  .accent-line           { animation: none; }
+  .btn-primary::after    { display: none; }
+  .project-banner-shine  { animation: none; }
+  .contact-glow-wrap     { animation: none; }
+  .badge-current-dot     { animation: none; }
 }
