@@ -23,7 +23,7 @@ const METHODS = [
     accent: "#0A66C2",
     label: "LinkedIn",
     value: "leng-hongmeng",
-    href: "https://www.linkedin.com/in/leng-hongmeng",
+    href: "www.linkedin.com/in/leng-hongmeng-07a2a8287",
     action: "View profile",
     external: true,
   },
