@@ -22,7 +22,7 @@ export const socialLinks = [
 ] as const;
 
 export const about = {
-  bio: "Software Engineer and IT Instructor with experience in software development and technical mentorship, specializing in Java, Spring Boot, and backend system development. At the Korea Software HRD Center, I mentor and guide aspiring students through real-world partner projects, supporting them in requirements analysis, system design, implementation, testing, and deployment. Passionate about fostering technical excellence, continuous learning, and bridging the gap between academic knowledge and industry expectations through hands-on, project-based learning.",
+  bio: "Software Engineer and IT Instructor specializing in Java, Spring Boot, and backend development. Experienced in mentoring students through industry-based projects, guiding them across the software development lifecycle from requirements analysis to deployment. Passionate about developing technical talent and bridging the gap between academic learning and real-world software engineering.",
 } as const;
 
 export const education = [
@@ -103,12 +103,12 @@ export const experience = [
     company: "Korea Software HRD Center (KSHRD)",
     location: "Phnom Penh",
     summary:
-      "Deliver training in Java Programming and Spring Boot, and mentor students through real-world, project-based learning experiences.",
+      "IT Instructor delivering Java and Spring Boot training, guiding students through real-world software engineering projects.",
     highlights: [
-      "Deliver training in Java Programming (OOP, Collections Framework, Stream API, Multithreading, JDBC, and Design Patterns), equipping students with strong software engineering fundamentals and problem-solving skills.",
-      "Teach Spring Boot and Spring Cloud Microservices, covering RESTful API development, Spring Data JPA, Spring Security, API Gateway, Service Discovery (Eureka), Config Server, Circuit Breaker, Distributed Tracing, and inter-service communication.",
-      "Lead project-based learning activities, helping students apply software engineering concepts to real-world business requirements.",
-      "Mentor student teams in collaborative projects with industry partners, including KOSIGN and Hunesion company, providing technical guidance throughout the software development lifecycle."
+      "Delivered training in Java Programming and core software engineering concepts.",
+      "Taught Spring Boot and Spring Cloud Microservices for enterprise application development.",
+      "Guided students through real-world, project-based software development.",
+      "Mentored student teams on industry projects with KOSIGN and Hunesion throughout the SDLC.",
     ],
     tech: ["Java", "Spring Boot", "Spring Cloud", "PostgreSQL", "REST", "JWT"],
   },
